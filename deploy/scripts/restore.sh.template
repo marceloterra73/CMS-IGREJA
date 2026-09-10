@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# TEMPLATE DE SCRIPT — RESTAURAÇÃO DE BACKUP DO POSTGRESQL (CMS VISUAL PARA IGREJAS)
+# Fase 63: Preparação da Infraestrutura de Produção e Estratégia de Deploy
+#
+# ATENÇÃO: ARQUIVO-MODELO / TEMPLATE. NUNCA EXECUTAR SEM CONFIRMAÇÃO MANUAL EXPLÍCITA.
+# ==============================================================================
+
+set -euo pipefail
+
+if [ $# -lt 1 ]; then
+    echo "Uso: $0 <caminho_para_arquivo_backup.dump>"
+    exit 1
+fi
+
+BACKUP_FILE="$1"
+
+if [ ! -f "${BACKUP_FILE}" ]; then
+    echo "ERRO: Arquivo de backup não encontrado: ${BACKUP_FILE}"
+    exit 1
+fi
+
+echo "=============================================================================="
+echo " AVISO CRÍTICO DE RESTAURAÇÃO DE BANCO DE DADOS"
+echo " Arquivo de backup: ${BACKUP_FILE}"
+echo " Banco destino:     ${DATABASE_NAME:-cms_igrejas}"
+echo " Host:              ${DATABASE_HOST:-127.0.0.1}"
+echo "=============================================================================="
+
+# Validação prévia de integridade via checksum SHA256 se existir
+if [ -f "${BACKUP_FILE}.sha256" ]; then
+    echo "Verificando integridade SHA256 do arquivo..."
+    sha256sum -c "${BACKUP_FILE}.sha256"
+    echo "Checksum verificado com sucesso."
+fi
+
+# Confirmação manual obrigatória antes de qualquer ação
+read -r -p "Confirma a restauração deste backup? Digite RESTAURAR para continuar: " CONFIRMATION
+if [ "${CONFIRMATION}" != "RESTAURAR" ]; then
+    echo "Restauração cancelada pelo operador."
+    exit 0
+fi
+
+echo "Iniciando restauração via pg_restore..."
+
+pg_restore -h "${DATABASE_HOST:-127.0.0.1}" \
+           -p "${DATABASE_PORT:-5432}" \
+           -U "${DATABASE_USER:-cms_admin}" \
+           -d "${DATABASE_NAME:-cms_igrejas}" \
+           --clean \
+           --if-exists \
+           --no-owner \
+           --no-privileges \
+           "${BACKUP_FILE}"
+
+echo "Restauração concluída. Revalidando políticas RLS..."
+
+# Revalidação de RLS após restauração
+psql -h "${DATABASE_HOST:-127.0.0.1}" \
+     -p "${DATABASE_PORT:-5432}" \
+     -U "${DATABASE_USER:-cms_admin}" \
+     -d "${DATABASE_NAME:-cms_igrejas}" \
+     -c "ALTER TABLE cms_resources ENABLE ROW LEVEL SECURITY; ALTER TABLE cms_users ENABLE ROW LEVEL SECURITY;"
+
+echo "Restauração e validação de segurança finalizadas com sucesso."

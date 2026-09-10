@@ -1,0 +1,12 @@
+{
+  "backupId": "backup_1789007052775_2d9f530b",
+  "timestamp": "2026-09-10T02:24:12.775Z",
+  "version": "1.0.0",
+  "environment": "development",
+  "totalTenants": 2,
+  "totalKeys": 7,
+  "totalBytes": 566,
+  "checksumDataJson": "812ddb72fb9486932b45ee8e4ed81abd4ecc4fe22d083dd6f162d69bb6bd348e",
+  "checksumManifestJson": "6ea8d965abaa53e7f1f396988a7a4d915a38ed1d7c333f9b107ff5b7b3481258",
+  "storageFormat": "json"
+}

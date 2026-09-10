@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# TEMPLATE DE SCRIPT — BACKUP LÓGICO SEGURO DO POSTGRESQL (CMS VISUAL PARA IGREJAS)
+# Fase 63: Preparação da Infraestrutura de Produção e Estratégia de Deploy
+#
+# ATENÇÃO: ARQUIVO-MODELO / TEMPLATE. NÃO EXECUTAR EM SERVIDORES SEM AUTORIZAÇÃO.
+# ==============================================================================
+
+set -euo pipefail
+
+BACKUP_DIR="/var/backups/cms"
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+BACKUP_FILE="${BACKUP_DIR}/cms_db_${TIMESTAMP}.dump"
+LOG_FILE="${BACKUP_DIR}/backup_${TIMESTAMP}.log"
+RETENTION_DAYS=14
+
+mkdir -p "${BACKUP_DIR}"
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Iniciando backup do banco de dados cms_igrejas..." | tee -a "${LOG_FILE}"
+
+# Executa pg_dump em formato customizado comprimido (-Fc)
+# Lê credenciais do ambiente ou arquivo ~/.pgpass seguro (permissão 0600)
+pg_dump -h "${DATABASE_HOST:-127.0.0.1}" \
+        -p "${DATABASE_PORT:-5432}" \
+        -U "${DATABASE_USER:-cms_admin}" \
+        -d "${DATABASE_NAME:-cms_igrejas}" \
+        -Fc \
+        -f "${BACKUP_FILE}" 2>> "${LOG_FILE}"
+
+# Geração de checksum SHA256 para integridade
+sha256sum "${BACKUP_FILE}" > "${BACKUP_FILE}.sha256"
+
+FILE_SIZE=$(du -h "${BACKUP_FILE}" | cut -f1)
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Backup concluído com sucesso: ${BACKUP_FILE} (${FILE_SIZE})" | tee -a "${LOG_FILE}"
+
+# Limpeza automática de backups antigos conforme política de retenção
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Aplicando política de retenção de ${RETENTION_DAYS} dias..." | tee -a "${LOG_FILE}"
+find "${BACKUP_DIR}" -type f -name "cms_db_*.dump*" -mtime "+${RETENTION_DAYS}" -exec rm -f {} \;
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Rotina de backup finalizada com sucesso." | tee -a "${LOG_FILE}"

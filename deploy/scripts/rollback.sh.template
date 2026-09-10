@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# TEMPLATE DE SCRIPT — ROLLBACK ATÔMICO IMEDIATO (CMS VISUAL PARA IGREJAS)
+# Fase 63: Preparação da Infraestrutura de Produção e Estratégia de Deploy
+#
+# ATENÇÃO: ARQUIVO-MODELO / TEMPLATE. NÃO EXECUTAR EM SERVIDORES SEM AUTORIZAÇÃO.
+# ==============================================================================
+
+set -euo pipefail
+
+APP_ROOT="/var/www/cms"
+RELEASES_DIR="${APP_ROOT}/releases"
+CURRENT_LINK="${APP_ROOT}/current"
+
+echo "============================================================"
+echo " INICIANDO PROCEDIMENTO DE ROLLBACK EMERGENCIAL"
+echo "============================================================"
+
+# Identifica a release atual e a release anterior na ordem cronológica
+CURRENT_RELEASE=$(readlink -f "${CURRENT_LINK}" || echo "NONE")
+PREVIOUS_RELEASE=$(ls -1dt "${RELEASES_DIR}"/* 2>/dev/null | sed -n '2p' || echo "NONE")
+
+if [ "${PREVIOUS_RELEASE}" = "NONE" ] || [ ! -d "${PREVIOUS_RELEASE}" ]; then
+    echo "ERRO CRÍTICO: Nenhuma release anterior válida encontrada para rollback."
+    exit 1
+fi
+
+echo "Release com falha:    ${CURRENT_RELEASE}"
+echo "Release para retorno: ${PREVIOUS_RELEASE}"
+
+# Troca atômica do symlink para a versão anterior
+echo "Apontando link simbólico para a release anterior..."
+ln -sfn "${PREVIOUS_RELEASE}" "${CURRENT_LINK}"
+
+# Reinicialização graciosa do serviço systemd
+echo "Reiniciando serviço backend..."
+sudo systemctl reload-or-restart cms-backend
+sudo systemctl reload nginx
+
+# Validação do Health Check da release restaurada
+sleep 3
+HEALTH_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3001/api/v1/health || echo "FAILED")
+
+if [ "${HEALTH_STATUS}" = "200" ]; then
+    echo "============================================================"
+    echo " ROLLBACK CONCLUÍDO COM SUCESSO! Health Check: HTTP 200"
+    echo " Release ativa restaurada: ${PREVIOUS_RELEASE}"
+    echo "============================================================"
+    exit 0
+else
+    echo "ERRO GRAVE: O serviço continua em falha após rollback (Status: ${HEALTH_STATUS})."
+    echo "Intervenção manual de engenharia requerida imediatamente."
+    exit 2
+fi

@@ -1,0 +1,82 @@
+{
+  "cms:tenant_alpha:settings": {
+    "rawKey": "cms:tenant_alpha:settings",
+    "tenantId": "tenant_alpha",
+    "resource": "settings",
+    "value": {
+      "siteName": "Igreja Alpha",
+      "language": "pt-BR"
+    },
+    "sizeBytes": 46,
+    "checksumSha256": "59668bce0151affc015c25cb7fcc40b7c3c89bffee28bb208df6996aaecf8cd0",
+    "timestamp": "2026-09-10T22:17:05.911Z"
+  },
+  "cms:tenant_alpha:themes": {
+    "rawKey": "cms:tenant_alpha:themes",
+    "tenantId": "tenant_alpha",
+    "resource": "themes",
+    "value": [
+      {
+        "id": "theme_modern",
+        "name": "Tema Moderno",
+        "version": "1.0.0",
+        "isDefault": true,
+        "tokens": {
+          "primaryColor": "#2563eb"
+        }
+      }
+    ],
+    "sizeBytes": 116,
+    "checksumSha256": "5e64e64cb2f0efcc4759e2f5532e553ed9d64cc75651f0accfa33c5f183df06e",
+    "timestamp": "2026-09-10T22:17:05.911Z"
+  },
+  "cms:tenant_alpha:pages": {
+    "rawKey": "cms:tenant_alpha:pages",
+    "tenantId": "tenant_alpha",
+    "resource": "pages",
+    "value": [
+      {
+        "id": "page_home_alpha",
+        "title": "Início Alpha",
+        "slug": "home",
+        "status": "published",
+        "order": 0,
+        "isHome": true,
+        "sections": [
+          {
+            "id": "sec_hero_1",
+            "title": "Hero Section",
+            "order": 0,
+            "isVisible": true,
+            "blocks": [
+              {
+                "id": "blk_text_1",
+                "type": "text",
+                "order": 0,
+                "isVisible": true,
+                "data": {
+                  "content": "Bem-vindos à Igreja Alpha"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sizeBytes": 312,
+    "checksumSha256": "fd040cad47fd87e90b221228ad24a060f522941ecf03decd5354725a1771d68a",
+    "timestamp": "2026-09-10T22:17:05.911Z"
+  },
+  "cms:tenant_beta:settings": {
+    "rawKey": "cms:tenant_beta:settings",
+    "tenantId": "tenant_beta",
+    "resource": "settings",
+    "value": {
+      "siteName": "Igreja Beta",
+      "language": "pt-BR"
+    },
+    "sizeBytes": 45,
+    "checksumSha256": "2790eb55f9cd3b23a9dc9593f327198c4b1652c9293b8f2c0b219da4283ea6ca",
+    "timestamp": "2026-09-10T22:17:05.911Z"
+  }
+}

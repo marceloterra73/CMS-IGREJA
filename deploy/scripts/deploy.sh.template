@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# TEMPLATE DE SCRIPT — DEPLOY ATÔMICO SEM DOWNTIME (CMS VISUAL PARA IGREJAS)
+# Fase 63: Preparação da Infraestrutura de Produção e Estratégia de Deploy
+#
+# ESTRUTURA DE DIRETÓRIOS ALVO NA VPS:
+# /var/www/cms/
+#   ├── releases/          # Releases imutáveis versionadas por timestamp
+#   ├── current -> ...     # Link simbólico para a release ativa
+#   └── shared/            # Arquivos persistentes (shared/.env, logs)
+#
+# ATENÇÃO: ARQUIVO-MODELO / TEMPLATE. NÃO EXECUTAR EM SERVIDORES SEM AUTORIZAÇÃO.
+# ==============================================================================
+
+set -euo pipefail
+
+APP_ROOT="/var/www/cms"
+RELEASES_DIR="${APP_ROOT}/releases"
+SHARED_DIR="${APP_ROOT}/shared"
+CURRENT_LINK="${APP_ROOT}/current"
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+NEW_RELEASE_DIR="${RELEASES_DIR}/${TIMESTAMP}"
+KEEP_RELEASES=5
+
+echo "[1/8] Preparando nova release: ${NEW_RELEASE_DIR}..."
+mkdir -p "${NEW_RELEASE_DIR}"
+
+# Copiar artefatos compilados ou clonar repositório
+echo "[2/8] Clonando repositório e instalando dependências de produção..."
+# git clone --depth 1 --branch main git@github.com:org/repo.git "${NEW_RELEASE_DIR}"
+# cd "${NEW_RELEASE_DIR}"
+# npm ci --omit=dev
+
+# Construção do frontend e do bundle do backend
+# npm run build
+
+# Link do arquivo de variáveis compartilhadas e protegidas
+echo "[3/8] Vinculando arquivo .env compartilhado..."
+ln -sf "${SHARED_DIR}/.env" "${NEW_RELEASE_DIR}/.env"
+
+# Execução do backup preventivo do banco antes de migrações
+echo "[4/8] Executando backup preventivo pré-deploy..."
+/var/www/cms/deploy/scripts/backup.sh || {
+    echo "FALHA NO BACKUP PRÉ-DEPLOY. ABORTANDO DEPLOY."
+    rm -rf "${NEW_RELEASE_DIR}"
+    exit 1
+}
+
+# Execução de migrations seguras (Drizzle ORM)
+echo "[5/8] Executando migrations do banco de dados..."
+# cd "${NEW_RELEASE_DIR}" && npm run db:migrate || {
+#     echo "FALHA NAS MIGRATIONS. ABORTANDO ATIVAÇÃO."
+#     exit 1
+# }
+
+# Troca atômica do symlink
+echo "[6/8] Ativando nova release via link simbólico atômico..."
+ln -sfn "${NEW_RELEASE_DIR}" "${CURRENT_LINK}"
+
+# Reinicialização graciosa do serviço systemd
+echo "[7/8] Reiniciando serviço backend..."
+sudo systemctl reload-or-restart cms-backend
+sudo systemctl reload nginx
+
+# Validação imediata de Health Check
+echo "[8/8] Validando Health Check pós-deploy..."
+sleep 3
+HEALTH_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3001/api/v1/health || echo "FAILED")
+
+if [ "${HEALTH_STATUS}" = "200" ]; then
+    echo "============================================================"
+    echo " DEPLOY CONCLUÍDO COM SUCESSO! Health Check: HTTP 200"
+    echo " Release ativa: ${TIMESTAMP}"
+    echo "============================================================"
+else
+    echo "============================================================"
+    echo " ALERTA: Health check falhou com status ${HEALTH_STATUS}."
+    echo " Iniciando procedimento de rollback imediato..."
+    echo "============================================================"
+    /var/www/cms/deploy/scripts/rollback.sh
+    exit 1
+fi
+
+# Limpeza de releases antigas mantendo as últimas N
+echo "Limpando releases antigas (mantendo as ${KEEP_RELEASES} mais recentes)..."
+cd "${RELEASES_DIR}"
+ls -1dt ./* | tail -n +$((KEEP_RELEASES + 1)) | xargs -r rm -rf
+
+echo "Processo de deploy finalizado."

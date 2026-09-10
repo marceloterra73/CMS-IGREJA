@@ -1,0 +1,55 @@
+# ==============================================================================
+# TEMPLATE DE SERVIÇO SYSTEMD — CMS VISUAL PARA IGREJAS (BACKEND NODE/EXPRESS)
+# Fase 63: Preparação da Infraestrutura de Produção e Estratégia de Deploy
+#
+# LOCAL DE INSTALAÇÃO NA VPS (FUTURO): /etc/systemd/system/cms-backend.service
+#
+# ATENÇÃO: ARQUIVO-MODELO / TEMPLATE PARA FUTURA EXECUÇÃO AUTORIZADA.
+# NENHUM SERVIÇO REAL É ATIVADO OU EXECUTADO NESTA FASE.
+# ==============================================================================
+
+[Unit]
+Description=CMS Visual para Igrejas — API Backend Node.js
+Documentation=https://cms.example.com
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=cms
+Group=cms
+WorkingDirectory=/var/www/cms/current
+
+# Variáveis carregadas exclusivamente do arquivo protegido em /var/www/cms/shared/.env
+EnvironmentFile=/var/www/cms/shared/.env
+Environment=NODE_ENV=production
+Environment=HOST=127.0.0.1
+Environment=PORT=3001
+
+# Execução nativa do bundle compilado em produção (sem tsx ou devDependencies)
+ExecStart=/usr/bin/node dist/server.mjs
+
+# Política de Restart e Tolerância a Falhas
+Restart=always
+RestartSec=10
+TimeoutStopSec=15
+KillMode=mixed
+
+# Isolamento e Hardening de Segurança no Linux (Systemd Sandboxing)
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+LockPersonality=true
+RestrictRealtime=true
+
+# Gerenciamento de Logs via systemd-journald
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=cms-backend
+
+[Install]
+WantedBy=multi-user.target

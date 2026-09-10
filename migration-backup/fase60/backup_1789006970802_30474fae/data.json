@@ -1,0 +1,1263 @@
+{
+  "cms:ib_central:settings": {
+    "rawKey": "cms:ib_central:settings",
+    "tenantId": "ib_central",
+    "resource": "settings",
+    "value": {
+      "tenantId": "ib_central",
+      "siteName": "Igreja Batista Central — Portal Oficial",
+      "language": "pt-BR",
+      "locale": "pt_BR",
+      "timezone": "America/Sao_Paulo",
+      "dateFormat": "DD/MM/YYYY",
+      "timeFormat": "24h",
+      "faviconMediaId": "media_favicon_01",
+      "faviconUrl": "https://images.unsplash.com/photo-1548625361-16a9a0dc1986?auto=format&fit=crop&w=64&q=80",
+      "updatedAt": "2026-09-08T10:00:00Z"
+    },
+    "sizeBytes": 367,
+    "checksumSha256": "322b93838bb97fcedfa6e73441d13156a87352dcc3bd84279dc5795741ace5a7",
+    "timestamp": "2026-09-10T02:22:50.802Z"
+  },
+  "cms:ib_central:institutional": {
+    "rawKey": "cms:ib_central:institutional",
+    "tenantId": "ib_central",
+    "resource": "institutional",
+    "value": {
+      "tenantId": "ib_central",
+      "profile": {
+        "name": "Igreja Batista Central",
+        "shortName": "IBC Central",
+        "description": "Uma igreja viva levando a mensagem do Evangelho a todas as famílias e gerando impacto espiritual e social na cidade.",
+        "tagline": "Comunhão, Adoração e Missão",
+        "slogan": "Lugar de recomeços e esperança viva",
+        "denomination": "Batista Tradicional",
+        "leadPastor": "Pr. Alexandre Mendes",
+        "foundingYear": 1984,
+        "logoMediaId": "media_logo_principal",
+        "logoUrl": "https://images.unsplash.com/photo-1548625361-16a9a0dc1986?auto=format&fit=crop&w=400&q=80"
+      },
+      "address": {
+        "street": "Avenida das Nações",
+        "number": "1420",
+        "complement": "Templo Sede",
+        "neighborhood": "Centro",
+        "city": "São Paulo",
+        "state": "SP",
+        "postalCode": "01310-100",
+        "country": "Brasil"
+      },
+      "contact": {
+        "email": "contato@igrejabatistacentral.com.br",
+        "phone": "(11) 3456-7890",
+        "whatsapp": "(11) 98765-4321"
+      },
+      "socialLinks": {
+        "instagram": "https://instagram.com/ibcentral",
+        "youtube": "https://youtube.com/@ibcentral",
+        "facebook": "https://facebook.com/ibcentral",
+        "spotify": "https://spotify.com/show/ibcpodcast"
+      },
+      "updatedAt": "2026-09-08T10:00:00Z"
+    },
+    "sizeBytes": 1086,
+    "checksumSha256": "10282b081ce74690f7ee3a4365010075163611f04a18b397f46322d49b4a5fbd",
+    "timestamp": "2026-09-10T02:22:50.802Z"
+  },
+  "cms:ib_central:themes": {
+    "rawKey": "cms:ib_central:themes",
+    "tenantId": "ib_central",
+    "resource": "themes",
+    "value": [
+      {
+        "id": "theme_default_warm",
+        "name": "Harmonia Eclesiástica (Padrão)",
+        "description": "Paleta acolhedora com tons terrosos quentes, âmbar e pedra nobre, ideal para congregações contemporâneas.",
+        "version": "1.0.0",
+        "isDefault": true,
+        "status": "active",
+        "createdAt": "2026-09-01T10:00:00Z",
+        "updatedAt": "2026-09-08T10:00:00Z",
+        "tokens": {
+          "colors": {
+            "primary": "#78350f",
+            "secondary": "#d97706",
+            "accent": "#f59e0b",
+            "background": "#fafaf9",
+            "surface": "#ffffff",
+            "text": "#1c1917",
+            "muted": "#78716c",
+            "border": "#e7e5e4",
+            "success": "#16a34a",
+            "warning": "#d97706",
+            "error": "#dc2626"
+          },
+          "typography": {
+            "fontFamilyHeading": "Georgia, serif",
+            "fontFamilyBody": "system-ui, -apple-system, sans-serif",
+            "fontSizeBase": "16px",
+            "fontSizeHeading": "32px",
+            "fontWeightNormal": "400",
+            "fontWeightBold": "700",
+            "lineHeightBase": "1.6",
+            "letterSpacingBase": "-0.01em"
+          },
+          "spacing": {
+            "base": "16px",
+            "sectionPaddingYSmall": "32px",
+            "sectionPaddingYMedium": "64px",
+            "sectionPaddingYLarge": "96px",
+            "containerNarrow": "768px",
+            "containerStandard": "1024px",
+            "containerWide": "1280px"
+          },
+          "borders": {
+            "radiusSmall": "4px",
+            "radiusMedium": "8px",
+            "radiusLarge": "16px",
+            "radiusFull": "9999px",
+            "borderWidthThin": "1px",
+            "borderWidthThick": "2px"
+          },
+          "elevations": {
+            "shadowNone": "none",
+            "shadowLow": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+            "shadowMedium": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+            "shadowHigh": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+          }
+        }
+      },
+      {
+        "id": "theme_liturgic_blue",
+        "name": "Serenidade Litúrgica",
+        "description": "Tons sóbrios de azul profundo e cinzas neutros, conferindo reverência e tradição solene.",
+        "version": "1.0.0",
+        "isDefault": false,
+        "status": "draft",
+        "createdAt": "2026-09-02T10:00:00Z",
+        "updatedAt": "2026-09-08T10:00:00Z",
+        "tokens": {
+          "colors": {
+            "primary": "#1e3a8a",
+            "secondary": "#2563eb",
+            "accent": "#38bdf8",
+            "background": "#f8fafc",
+            "surface": "#ffffff",
+            "text": "#0f172a",
+            "muted": "#64748b",
+            "border": "#e2e8f0",
+            "success": "#15803d",
+            "warning": "#b45309",
+            "error": "#b91c1c"
+          },
+          "typography": {
+            "fontFamilyHeading": "Palatino, Times New Roman, serif",
+            "fontFamilyBody": "system-ui, -apple-system, sans-serif",
+            "fontSizeBase": "16px",
+            "fontSizeHeading": "34px",
+            "fontWeightNormal": "400",
+            "fontWeightBold": "700",
+            "lineHeightBase": "1.65",
+            "letterSpacingBase": "0em"
+          },
+          "spacing": {
+            "base": "16px",
+            "sectionPaddingYSmall": "28px",
+            "sectionPaddingYMedium": "56px",
+            "sectionPaddingYLarge": "84px",
+            "containerNarrow": "768px",
+            "containerStandard": "1024px",
+            "containerWide": "1280px"
+          },
+          "borders": {
+            "radiusSmall": "2px",
+            "radiusMedium": "6px",
+            "radiusLarge": "12px",
+            "radiusFull": "9999px",
+            "borderWidthThin": "1px",
+            "borderWidthThick": "2px"
+          },
+          "elevations": {
+            "shadowNone": "none",
+            "shadowLow": "0 1px 3px 0 rgba(15, 23, 42, 0.05)",
+            "shadowMedium": "0 4px 6px -1px rgba(15, 23, 42, 0.08)",
+            "shadowHigh": "0 10px 15px -3px rgba(15, 23, 42, 0.1)"
+          }
+        }
+      },
+      {
+        "id": "theme_olive_grace",
+        "name": "Graça & Renovação (Oliva)",
+        "description": "Matizes verdes de oliva, esperança e vida comunitária em equilíbrio com fundos orgânicos.",
+        "version": "1.0.0",
+        "isDefault": false,
+        "status": "draft",
+        "createdAt": "2026-09-03T10:00:00Z",
+        "updatedAt": "2026-09-08T10:00:00Z",
+        "tokens": {
+          "colors": {
+            "primary": "#14532d",
+            "secondary": "#16a34a",
+            "accent": "#84cc16",
+            "background": "#fcfdfa",
+            "surface": "#ffffff",
+            "text": "#142319",
+            "muted": "#52665a",
+            "border": "#e1e8e2",
+            "success": "#16a34a",
+            "warning": "#d97706",
+            "error": "#dc2626"
+          },
+          "typography": {
+            "fontFamilyHeading": "Garamond, Baskerville, serif",
+            "fontFamilyBody": "system-ui, -apple-system, sans-serif",
+            "fontSizeBase": "16px",
+            "fontSizeHeading": "32px",
+            "fontWeightNormal": "400",
+            "fontWeightBold": "700",
+            "lineHeightBase": "1.6",
+            "letterSpacingBase": "-0.01em"
+          },
+          "spacing": {
+            "base": "16px",
+            "sectionPaddingYSmall": "32px",
+            "sectionPaddingYMedium": "64px",
+            "sectionPaddingYLarge": "96px",
+            "containerNarrow": "768px",
+            "containerStandard": "1024px",
+            "containerWide": "1280px"
+          },
+          "borders": {
+            "radiusSmall": "6px",
+            "radiusMedium": "10px",
+            "radiusLarge": "20px",
+            "radiusFull": "9999px",
+            "borderWidthThin": "1px",
+            "borderWidthThick": "2px"
+          },
+          "elevations": {
+            "shadowNone": "none",
+            "shadowLow": "0 1px 2px 0 rgba(20, 83, 45, 0.04)",
+            "shadowMedium": "0 4px 6px -1px rgba(20, 83, 45, 0.08)",
+            "shadowHigh": "0 10px 15px -3px rgba(20, 83, 45, 0.12)"
+          }
+        }
+      }
+    ],
+    "sizeBytes": 4090,
+    "checksumSha256": "3fcf4ff34089ead17b015ee3e98aeb160dce29b72e058a605320297a22fb97fb",
+    "timestamp": "2026-09-10T02:22:50.802Z"
+  },
+  "cms:ib_central:active_theme_id": {
+    "rawKey": "cms:ib_central:active_theme_id",
+    "tenantId": "ib_central",
+    "resource": "active_theme_id",
+    "value": "theme_light",
+    "sizeBytes": 13,
+    "checksumSha256": "b86b564298f4c4df7f6e6e6a285fa2898b0299b58106f83c374861540a0b7d72",
+    "timestamp": "2026-09-10T02:22:50.802Z"
+  },
+  "cms:ib_central:schedules": {
+    "rawKey": "cms:ib_central:schedules",
+    "tenantId": "ib_central",
+    "resource": "schedules",
+    "value": [
+      {
+        "id": "sched_01",
+        "tenantId": "ib_central",
+        "title": "Culto da Família & EBD",
+        "dayOfWeek": "Domingo",
+        "time": "10:00",
+        "description": "Culto matutino com louvor comunitário, celebração em família e classes simultâneas da Escola Bíblica Dominical para crianças, jovens e adultos.",
+        "location": "Templo Principal",
+        "status": "active",
+        "createdAt": "2026-01-10T10:00:00.000Z",
+        "updatedAt": "2026-03-01T10:00:00.000Z"
+      },
+      {
+        "id": "sched_02",
+        "tenantId": "ib_central",
+        "title": "Culto de Celebração & Adoração",
+        "dayOfWeek": "Domingo",
+        "time": "18:00",
+        "description": "Culto solene de domingo à noite com ministração da Palavra de Deus, celebração mensal da Ceia do Senhor e coral congregacional.",
+        "location": "Templo Principal",
+        "status": "active",
+        "createdAt": "2026-01-10T10:00:00.000Z",
+        "updatedAt": "2026-03-01T10:00:00.000Z"
+      },
+      {
+        "id": "sched_03",
+        "tenantId": "ib_central",
+        "title": "Reunião de Oração & Estudo Bíblico",
+        "dayOfWeek": "Quarta-feira",
+        "time": "19:30",
+        "description": "Encontro de meio de semana dedicado à intercessão pastoral pelas famílias da igreja, oração por enfermos e estudo bíblico expositivo versículo a versículo.",
+        "location": "Salão Nobre / Templo",
+        "status": "active",
+        "createdAt": "2026-01-12T10:00:00.000Z",
+        "updatedAt": "2026-03-02T14:30:00.000Z"
+      },
+      {
+        "id": "sched_04",
+        "tenantId": "ib_central",
+        "title": "Culto Conexão Jovem",
+        "dayOfWeek": "Sábado",
+        "time": "19:30",
+        "description": "Culto da juventude e ministério universitário com louvor contemporâneo, mensagens práticas e comunhão fraterna após a reunião.",
+        "location": "Espaço Jovem / Auditório B",
+        "status": "active",
+        "createdAt": "2026-01-15T10:00:00.000Z",
+        "updatedAt": "2026-03-03T18:00:00.000Z"
+      },
+      {
+        "id": "sched_05",
+        "tenantId": "ib_central",
+        "title": "Café & Comunhão dos Homens",
+        "dayOfWeek": "Sábado",
+        "time": "07:30",
+        "description": "Café da manhã de comunhão quinzenal, oração matinal e estudos bíblicos focados na liderança cristã no lar e no ambiente de trabalho.",
+        "location": "Salão Social",
+        "status": "active",
+        "createdAt": "2026-02-01T10:00:00.000Z",
+        "updatedAt": "2026-03-01T11:00:00.000Z"
+      },
+      {
+        "id": "sched_06",
+        "tenantId": "ib_central",
+        "title": "Tarde com Propósito (Mulheres)",
+        "dayOfWeek": "Terça-feira",
+        "time": "14:30",
+        "description": "Tarde de oração, estudo bíblico e aconselhamento mútuo para mulheres da congregação e visitantes convidadas.",
+        "location": "Salão Social",
+        "status": "inactive",
+        "createdAt": "2026-02-10T10:00:00.000Z",
+        "updatedAt": "2026-03-04T16:00:00.000Z"
+      }
+    ],
+    "sizeBytes": 2428,
+    "checksumSha256": "ecc088a36f9f39b18b877272eaab5c7bd6fc6f7360991d56829e96afe4f4e06a",
+    "timestamp": "2026-09-10T02:22:50.802Z"
+  },
+  "cms:ib_central:donations": {
+    "rawKey": "cms:ib_central:donations",
+    "tenantId": "ib_central",
+    "resource": "donations",
+    "value": {
+      "id": "donation_central",
+      "tenantId": "ib_central",
+      "title": "Dízimos e Ofertas Missionárias",
+      "description": "Sua generosidade sustenta os projetos ministeriais, o acolhimento pastoral da nossa comunidade e o envio de missionários no Brasil e nas nações.",
+      "bankAccountInfo": "Banco do Brasil (001)\nAgência: 3456-7\nConta Corrente: 89012-3\nFavorecido: Igreja Batista Central\nCNPJ: 12.345.678/0001-90",
+      "pixKey": "pix@igrejacentral.org.br",
+      "instructions": "Para envio do comprovante para a secretaria da igreja ou para destinar sua oferta a uma finalidade específica (Missões, Ação Social ou Obras), envie uma mensagem para o WhatsApp oficial (11) 98765-4321.",
+      "status": "active",
+      "updatedAt": "2026-09-08T10:00:00.000Z"
+    },
+    "sizeBytes": 720,
+    "checksumSha256": "f81110f38b5fc8604554d8c9db0ca27dd0fbc94ef7ec1e8a256491d39330f90b",
+    "timestamp": "2026-09-10T02:22:50.802Z"
+  },
+  "cms:ib_central:live_stream": {
+    "rawKey": "cms:ib_central:live_stream",
+    "tenantId": "ib_central",
+    "resource": "live_stream",
+    "value": {
+      "id": "livestream_central",
+      "tenantId": "ib_central",
+      "title": "Culto de Celebração & Ceia do Senhor — Ao Vivo",
+      "description": "Acompanhe nossa transmissão ao vivo todos os domingos às 10h e 18h. Participe da adoração comunitária, louvor e ministração da Palavra de Deus de onde você estiver.",
+      "streamUrl": "https://www.youtube.com/watch?v=live_stream_central",
+      "status": "live",
+      "scheduledAt": "2026-09-13T10:00:00.000Z",
+      "updatedAt": "2026-09-08T10:30:00.000Z"
+    },
+    "sizeBytes": 463,
+    "checksumSha256": "24fdaf6f9d89740ac7e55cb98a5a2a4f4947dc6aa830fd20d8dfc3d943a6f4dc",
+    "timestamp": "2026-09-10T02:22:50.802Z"
+  },
+  "cms:ib_central:pages": {
+    "rawKey": "cms:ib_central:pages",
+    "tenantId": "ib_central",
+    "resource": "pages",
+    "value": [
+      {
+        "id": "page_home",
+        "tenantId": "ib_central",
+        "title": "Página Inicial",
+        "slug": "/",
+        "status": "published",
+        "order": 1,
+        "isHome": true,
+        "publishedAt": "2026-09-01T10:00:00Z",
+        "createdAt": "2026-08-15T09:00:00Z",
+        "updatedAt": "Hoje, às 08:30",
+        "seo": {
+          "metaTitle": "Igreja Batista Central — Comunhão, Adoração e Missão",
+          "metaDescription": "Bem-vindo à Igreja Batista Central. Cultos todos os domingos às 10h e 18h. Venha adorar a Deus conosco!",
+          "keywords": [
+            "igreja batista",
+            "cultos",
+            "são paulo",
+            "comunhão",
+            "família"
+          ]
+        },
+        "sections": [
+          {
+            "id": "sec_hero",
+            "title": "Banner Principal (Hero)",
+            "order": 1,
+            "isVisible": true,
+            "blocks": [
+              {
+                "id": "blk_hero_1",
+                "type": "hero",
+                "order": 1,
+                "isVisible": true,
+                "config": {
+                  "containerWidth": "full",
+                  "alignment": "center"
+                },
+                "data": {
+                  "title": "Uma Igreja Viva para Todas as Famílias"
+                }
+              }
+            ]
+          },
+          {
+            "id": "sec_schedule",
+            "title": "Cultos & Horários",
+            "order": 2,
+            "isVisible": true,
+            "blocks": [
+              {
+                "id": "blk_schedule_1",
+                "type": "schedule",
+                "order": 1,
+                "isVisible": true,
+                "config": {
+                  "containerWidth": "standard"
+                },
+                "data": {}
+              }
+            ]
+          },
+          {
+            "id": "sec_pastoral",
+            "title": "Mensagem Pastoral",
+            "order": 3,
+            "isVisible": true,
+            "blocks": [
+              {
+                "id": "blk_about_1",
+                "type": "about",
+                "order": 1,
+                "isVisible": true,
+                "config": {
+                  "containerWidth": "standard"
+                },
+                "data": {}
+              }
+            ]
+          },
+          {
+            "id": "sec_events",
+            "title": "Próximos Eventos",
+            "order": 4,
+            "isVisible": true,
+            "blocks": [
+              {
+                "id": "blk_events_1",
+                "type": "events",
+                "order": 1,
+                "isVisible": true,
+                "config": {
+                  "containerWidth": "standard"
+                },
+                "data": {}
+              }
+            ]
+          },
+          {
+            "id": "sec_sermons",
+            "title": "Últimos Sermões",
+            "order": 5,
+            "isVisible": true,
+            "blocks": [
+              {
+                "id": "blk_sermons_1",
+                "type": "sermons",
+                "order": 1,
+                "isVisible": true,
+                "config": {
+                  "containerWidth": "standard"
+                },
+                "data": {}
+              }
+            ]
+          },
+          {
+            "id": "sec_contact",
+            "title": "Localização & Contato",
+            "order": 6,
+            "isVisible": true,
+            "blocks": [
+              {
+                "id": "blk_contact_1",
+                "type": "contact",
+                "order": 1,
+                "isVisible": true,
+                "config": {
+                  "containerWidth": "standard"
+                },
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "page_about",
+        "tenantId": "ib_central",
+        "title": "Quem Somos",
+        "slug": "/quem-somos",
+        "status": "published",
+        "order": 2,
+        "isHome": false,
+        "publishedAt": "2026-09-02T14:00:00Z",
+        "createdAt": "2026-08-16T10:00:00Z",
+        "updatedAt": "Ontem, às 14:20",
+        "seo": {
+          "metaTitle": "Quem Somos — História e Liderança da Igreja Batista Central",
+          "metaDescription": "Conheça nossa história, corpo pastoral, visão, valores e declaração doutrinária.",
+          "keywords": [
+            "história",
+            "pastores",
+            "doutrina",
+            "visão"
+          ]
+        },
+        "sections": [
+          {
+            "id": "sec_about_hist",
+            "title": "Nossa História",
+            "order": 1,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_about_pastors",
+            "title": "Corpo Pastoral",
+            "order": 2,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_about_values",
+            "title": "Visão e Valores",
+            "order": 3,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_about_faith",
+            "title": "Declaração de Fé",
+            "order": 4,
+            "isVisible": true,
+            "blocks": []
+          }
+        ]
+      },
+      {
+        "id": "page_schedule",
+        "tenantId": "ib_central",
+        "title": "Cultos e Horários",
+        "slug": "/cultos",
+        "status": "published",
+        "order": 3,
+        "isHome": false,
+        "publishedAt": "2026-09-02T16:00:00Z",
+        "createdAt": "2026-08-16T11:00:00Z",
+        "updatedAt": "Há 3 dias",
+        "seo": {
+          "metaTitle": "Horários dos Cultos e Reuniões — Igreja Batista Central",
+          "metaDescription": "Confira nossos horários semanais de celebração, escola bíblica e reuniões de oração."
+        },
+        "sections": [
+          {
+            "id": "sec_sched_main",
+            "title": "Cultos Dominicais",
+            "order": 1,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_sched_week",
+            "title": "Reuniões Semanais",
+            "order": 2,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_sched_location",
+            "title": "Como Chegar",
+            "order": 3,
+            "isVisible": true,
+            "blocks": []
+          }
+        ]
+      },
+      {
+        "id": "page_ministries",
+        "tenantId": "ib_central",
+        "title": "Ministérios",
+        "slug": "/ministerios",
+        "status": "published",
+        "order": 4,
+        "isHome": false,
+        "publishedAt": "2026-09-03T11:00:00Z",
+        "createdAt": "2026-08-17T09:00:00Z",
+        "updatedAt": "Há 5 dias",
+        "seo": {
+          "metaTitle": "Ministérios e Departamentos — Igreja Batista Central",
+          "metaDescription": "Conheça nossos grupos de conexão: Infantil, Jovens, Casais, Ação Social e Louvor."
+        },
+        "sections": [
+          {
+            "id": "sec_min_intro",
+            "title": "Visão Ministerial",
+            "order": 1,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_min_kids",
+            "title": "Ministério Infantil",
+            "order": 2,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_min_youth",
+            "title": "Juventude Conectada",
+            "order": 3,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_min_families",
+            "title": "Famílias Fortes",
+            "order": 4,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_min_action",
+            "title": "Ação Social Eclesial",
+            "order": 5,
+            "isVisible": true,
+            "blocks": []
+          }
+        ]
+      },
+      {
+        "id": "page_sermons",
+        "tenantId": "ib_central",
+        "title": "Sermões e Mensagens",
+        "slug": "/sermoes",
+        "status": "published",
+        "order": 5,
+        "isHome": false,
+        "publishedAt": "2026-09-04T09:30:00Z",
+        "createdAt": "2026-08-18T14:00:00Z",
+        "updatedAt": "Há 6 dias",
+        "seo": {
+          "metaTitle": "Acervo de Sermões e Mensagens Bíblicas",
+          "metaDescription": "Assista e ouça as mensagens ministradas nos cultos de celebração."
+        },
+        "sections": [
+          {
+            "id": "sec_sermon_featured",
+            "title": "Mensagem em Destaque",
+            "order": 1,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_sermon_series",
+            "title": "Séries Recentes",
+            "order": 2,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_sermon_podcasts",
+            "title": "Podcasts e Áudios",
+            "order": 3,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_sermon_youtube",
+            "title": "Canal Oficial YouTube",
+            "order": 4,
+            "isVisible": true,
+            "blocks": []
+          }
+        ]
+      },
+      {
+        "id": "page_events",
+        "tenantId": "ib_central",
+        "title": "Eventos e Agenda",
+        "slug": "/eventos",
+        "status": "published",
+        "order": 6,
+        "isHome": false,
+        "publishedAt": "2026-09-04T12:00:00Z",
+        "createdAt": "2026-08-19T08:00:00Z",
+        "updatedAt": "Há 1 semana",
+        "seo": {
+          "metaTitle": "Calendário de Eventos e Conferências",
+          "metaDescription": "Participe dos próximos eventos, congressos e encontros da nossa igreja."
+        },
+        "sections": [
+          {
+            "id": "sec_ev_calendar",
+            "title": "Calendário Mensal",
+            "order": 1,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_ev_conf",
+            "title": "Conferência Anual 2026",
+            "order": 2,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_ev_register",
+            "title": "Inscrições Online",
+            "order": 3,
+            "isVisible": true,
+            "blocks": []
+          }
+        ]
+      },
+      {
+        "id": "page_prayer",
+        "tenantId": "ib_central",
+        "title": "Pedidos de Oração",
+        "slug": "/oracao",
+        "status": "draft",
+        "order": 7,
+        "isHome": false,
+        "createdAt": "2026-09-05T15:00:00Z",
+        "updatedAt": "Ontem, às 17:10",
+        "seo": {
+          "metaTitle": "Envie seu Pedido de Oração — Igreja Batista Central",
+          "metaDescription": "Nossa equipe pastoral e de intercessão orará pelas suas causas com total confidencialidade."
+        },
+        "sections": [
+          {
+            "id": "sec_pray_form",
+            "title": "Formulário de Intercessão",
+            "order": 1,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_pray_team",
+            "title": "Equipe de Oração",
+            "order": 2,
+            "isVisible": true,
+            "blocks": []
+          }
+        ]
+      },
+      {
+        "id": "page_news",
+        "tenantId": "ib_central",
+        "title": "Notícias e Boletins",
+        "slug": "/noticias",
+        "status": "published",
+        "order": 8,
+        "isHome": false,
+        "publishedAt": "2026-09-05T18:00:00Z",
+        "createdAt": "2026-08-20T11:00:00Z",
+        "updatedAt": "Há 2 semanas",
+        "seo": {
+          "metaTitle": "Notícias, Comunicados e Artigos Pastorais",
+          "metaDescription": "Fique por dentro de tudo o que acontece na vida e ministério da nossa igreja."
+        },
+        "sections": [
+          {
+            "id": "sec_news_lead",
+            "title": "Notícia em Destaque",
+            "order": 1,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_news_list",
+            "title": "Feed de Artigos",
+            "order": 2,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_news_archive",
+            "title": "Boletins Semanais",
+            "order": 3,
+            "isVisible": true,
+            "blocks": []
+          }
+        ]
+      },
+      {
+        "id": "page_giving",
+        "tenantId": "ib_central",
+        "title": "Dízimos e Ofertas",
+        "slug": "/contribuir",
+        "status": "published",
+        "order": 9,
+        "isHome": false,
+        "publishedAt": "2026-09-05T19:00:00Z",
+        "createdAt": "2026-08-21T10:00:00Z",
+        "updatedAt": "Há 3 semanas",
+        "seo": {
+          "metaTitle": "Contribuições, Dízimos e Ofertas — Igreja Batista Central",
+          "metaDescription": "Apoie a obra e os projetos sociais da igreja através de transferências e PIX."
+        },
+        "sections": [
+          {
+            "id": "sec_give_word",
+            "title": "Princípio da Generosidade",
+            "order": 1,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_give_pix",
+            "title": "Chave PIX e Contas Bancárias",
+            "order": 2,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_give_projects",
+            "title": "Projetos Missionários Apoiados",
+            "order": 3,
+            "isVisible": true,
+            "blocks": []
+          }
+        ]
+      },
+      {
+        "id": "page_contact",
+        "tenantId": "ib_central",
+        "title": "Fale Conosco",
+        "slug": "/contato",
+        "status": "published",
+        "order": 10,
+        "isHome": false,
+        "publishedAt": "2026-09-06T10:00:00Z",
+        "createdAt": "2026-08-22T08:00:00Z",
+        "updatedAt": "Há 1 mês",
+        "seo": {
+          "metaTitle": "Fale Conosco — Contatos e Localização",
+          "metaDescription": "Entre em contato com nossa secretaria ou visite nosso templo em São Paulo."
+        },
+        "sections": [
+          {
+            "id": "sec_contact_channels",
+            "title": "Canais de Atendimento",
+            "order": 1,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_contact_map",
+            "title": "Mapa e Transporte",
+            "order": 2,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_contact_form",
+            "title": "Envie uma Mensagem",
+            "order": 3,
+            "isVisible": true,
+            "blocks": []
+          }
+        ]
+      },
+      {
+        "id": "page_missions_archived",
+        "tenantId": "ib_central",
+        "title": "Campanha de Missões 2025",
+        "slug": "/missoes-2025",
+        "status": "archived",
+        "order": 11,
+        "isHome": false,
+        "createdAt": "2025-05-10T10:00:00Z",
+        "updatedAt": "Há 3 meses",
+        "seo": {
+          "metaTitle": "Campanha de Missões 2025 — Relatório de Atividades",
+          "metaDescription": "Relatório das atividades missionárias desenvolvidas em 2025.",
+          "noIndex": true
+        },
+        "sections": [
+          {
+            "id": "sec_miss_rep",
+            "title": "Relatório Geral",
+            "order": 1,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_miss_photos",
+            "title": "Galeria de Fotos",
+            "order": 2,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_miss_thanks",
+            "title": "Agradecimento à Igreja",
+            "order": 3,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_miss_closed",
+            "title": "Campanha Encerrada",
+            "order": 4,
+            "isVisible": true,
+            "blocks": []
+          }
+        ]
+      },
+      {
+        "id": "page_retreat_draft",
+        "tenantId": "ib_central",
+        "title": "Retiro Espiritual de Carnaval 2027",
+        "slug": "/retiro-2027",
+        "status": "draft",
+        "order": 12,
+        "isHome": false,
+        "createdAt": "2026-09-06T14:30:00Z",
+        "updatedAt": "Há 4 dias",
+        "seo": {
+          "metaTitle": "Retiro Espiritual 2027 — Inscrições e Hospedagem",
+          "metaDescription": "Informações sobre valores, hospedagem e inscrições para o retiro espiritual."
+        },
+        "sections": [
+          {
+            "id": "sec_ret_intro",
+            "title": "Tema e Preletores",
+            "order": 1,
+            "isVisible": true,
+            "blocks": []
+          },
+          {
+            "id": "sec_ret_form",
+            "title": "Ficha de Inscrição",
+            "order": 2,
+            "isVisible": true,
+            "blocks": []
+          }
+        ]
+      }
+    ],
+    "sizeBytes": 9854,
+    "checksumSha256": "2600ffb191fc0c8deed5c9482c85bb812a6ea6c3f10dec5018ed60cc4515b013",
+    "timestamp": "2026-09-10T02:22:50.802Z"
+  },
+  "cms:ib_central:navigation": {
+    "rawKey": "cms:ib_central:navigation",
+    "tenantId": "ib_central",
+    "resource": "navigation",
+    "value": [
+      {
+        "id": "menu_main_header",
+        "tenantId": "ib_central",
+        "name": "Menu Principal",
+        "location": "header",
+        "status": "active",
+        "createdAt": "2026-08-20T10:00:00Z",
+        "updatedAt": "Hoje, às 09:15",
+        "items": [
+          {
+            "id": "item_home",
+            "label": "Início",
+            "order": 1,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_home"
+            }
+          },
+          {
+            "id": "item_about",
+            "label": "Quem Somos",
+            "order": 2,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_about"
+            },
+            "children": [
+              {
+                "id": "item_about_history",
+                "label": "Nossa História",
+                "order": 1,
+                "isVisible": true,
+                "parentId": "item_about",
+                "target": {
+                  "type": "page",
+                  "pageId": "page_about"
+                }
+              },
+              {
+                "id": "item_about_leadership",
+                "label": "Corpo Pastoral",
+                "order": 2,
+                "isVisible": true,
+                "parentId": "item_about",
+                "target": {
+                  "type": "page",
+                  "pageId": "page_about"
+                }
+              }
+            ]
+          },
+          {
+            "id": "item_schedule",
+            "label": "Cultos & Horários",
+            "order": 3,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_schedule"
+            }
+          },
+          {
+            "id": "item_ministries",
+            "label": "Ministérios",
+            "order": 4,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_ministries"
+            }
+          },
+          {
+            "id": "item_events",
+            "label": "Eventos",
+            "order": 5,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_events"
+            }
+          },
+          {
+            "id": "item_bible",
+            "label": "Bíblia Online",
+            "order": 6,
+            "isVisible": true,
+            "target": {
+              "type": "external",
+              "url": "https://www.bibliaonline.com.br",
+              "openInNewTab": true
+            },
+            "url": "https://www.bibliaonline.com.br",
+            "isExternal": true,
+            "openInNewTab": true
+          }
+        ]
+      },
+      {
+        "id": "menu_footer_main",
+        "tenantId": "ib_central",
+        "name": "Menu do Rodapé",
+        "location": "footer",
+        "status": "active",
+        "createdAt": "2026-08-20T10:30:00Z",
+        "updatedAt": "Ontem, às 17:40",
+        "items": [
+          {
+            "id": "item_foot_schedule",
+            "label": "Horários dos Cultos",
+            "order": 1,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_schedule"
+            }
+          },
+          {
+            "id": "item_foot_sermons",
+            "label": "Mensagens em Vídeo",
+            "order": 2,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_sermons"
+            }
+          },
+          {
+            "id": "item_foot_contact",
+            "label": "Como Chegar & Contato",
+            "order": 3,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_contact"
+            }
+          },
+          {
+            "id": "item_foot_youtube",
+            "label": "Canal no YouTube",
+            "order": 4,
+            "isVisible": true,
+            "target": {
+              "type": "external",
+              "url": "https://youtube.com",
+              "openInNewTab": true
+            },
+            "url": "https://youtube.com",
+            "isExternal": true,
+            "openInNewTab": true
+          }
+        ]
+      },
+      {
+        "id": "menu_mobile_drawer",
+        "tenantId": "ib_central",
+        "name": "Menu Mobile (Gaveta)",
+        "location": "mobile_drawer",
+        "status": "active",
+        "createdAt": "2026-08-22T14:10:00Z",
+        "updatedAt": "Há 3 dias",
+        "items": [
+          {
+            "id": "item_mob_home",
+            "label": "Página Inicial",
+            "order": 1,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_home"
+            }
+          },
+          {
+            "id": "item_mob_about",
+            "label": "Sobre Nossa Igreja",
+            "order": 2,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_about"
+            }
+          },
+          {
+            "id": "item_mob_schedule",
+            "label": "Programação da Semana",
+            "order": 3,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_schedule"
+            }
+          },
+          {
+            "id": "item_mob_prayer",
+            "label": "Fale Conosco",
+            "order": 4,
+            "isVisible": true,
+            "target": {
+              "type": "page",
+              "pageId": "page_contact"
+            }
+          }
+        ]
+      }
+    ],
+    "sizeBytes": 2866,
+    "checksumSha256": "133bc4857891d45b93497e4cd6de66ffadb85da317df01e19ee55e8d46c10bd8",
+    "timestamp": "2026-09-10T02:22:50.802Z"
+  },
+  "cms:ib_central:domains": {
+    "rawKey": "cms:ib_central:domains",
+    "tenantId": "ib_central",
+    "resource": "domains",
+    "value": [
+      {
+        "id": "dom_01",
+        "tenantId": "ib_central",
+        "hostname": "www.igrejabatistacentral.com.br",
+        "type": "custom_domain",
+        "status": "active",
+        "isPrimary": true,
+        "createdAt": "2026-01-10T09:00:00.000Z",
+        "updatedAt": "2026-03-01T14:30:00.000Z"
+      },
+      {
+        "id": "dom_02",
+        "tenantId": "ib_central",
+        "hostname": "igrejabatistacentral.com.br",
+        "type": "custom_domain",
+        "status": "active",
+        "isPrimary": false,
+        "createdAt": "2026-01-10T09:05:00.000Z",
+        "updatedAt": "2026-03-01T14:30:00.000Z"
+      },
+      {
+        "id": "dom_03",
+        "tenantId": "ib_central",
+        "hostname": "ibcentral.appigreja.com.br",
+        "type": "subdomain",
+        "status": "active",
+        "isPrimary": false,
+        "createdAt": "2025-12-01T08:00:00.000Z",
+        "updatedAt": "2025-12-01T08:00:00.000Z"
+      },
+      {
+        "id": "dom_04",
+        "tenantId": "ib_central",
+        "hostname": "juventude.ibcentral.com.br",
+        "type": "custom_domain",
+        "status": "pending",
+        "isPrimary": false,
+        "createdAt": "2026-08-15T11:20:00.000Z",
+        "updatedAt": "2026-08-15T11:20:00.000Z"
+      }
+    ],
+    "sizeBytes": 871,
+    "checksumSha256": "1e58d787af97904150d058a23ee2582105c5759182eff3bd07c80026b5ebb1e9",
+    "timestamp": "2026-09-10T02:22:50.802Z"
+  },
+  "cms:ib_central:analytics": {
+    "rawKey": "cms:ib_central:analytics",
+    "tenantId": "ib_central",
+    "resource": "analytics",
+    "value": {
+      "tenantId": "ib_central",
+      "googleAnalyticsId": "G-7X9B2C4E6F",
+      "googleTagManagerId": "GTM-K8L9M2N",
+      "metaPixelId": "1234567890123456",
+      "searchConsoleVerificationToken": "google123456789abcdef0",
+      "anonymizeIp": true,
+      "consentRequired": true,
+      "isActive": true,
+      "updatedAt": "2026-03-01T14:30:00.000Z"
+    },
+    "sizeBytes": 283,
+    "checksumSha256": "dc3f178e66a13312bb8afbf44442725f906344cf74c4959da7459ecfb8ca5f8d",
+    "timestamp": "2026-09-10T02:22:50.802Z"
+  }
+}

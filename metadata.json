@@ -1,0 +1,6 @@
+{
+  "name": "CMS Visual para Igrejas",
+  "description": "Plataforma web SaaS multi-tenant para criação, gerenciamento, edição visual e publicação de sites para igrejas e ministérios.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
