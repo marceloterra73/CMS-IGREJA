@@ -1045,7 +1045,14 @@ export type PermissionAction =
   | 'manage:sermons'
   | 'manage:events'
   | 'manage:prayer_requests'
-  | 'view:analytics';
+  | 'view:analytics'
+  | 'people.view' | 'people.create' | 'people.update' | 'people.delete' | 'people.manage'
+  | 'groups.view' | 'groups.create' | 'groups.update' | 'groups.delete' | 'groups.manage'
+  | 'education.view' | 'education.create' | 'education.update' | 'education.delete' | 'education.manage'
+  | 'finance.view' | 'finance.create' | 'finance.update' | 'finance.delete' | 'finance.manage'
+  | 'assets.view' | 'assets.create' | 'assets.update' | 'assets.delete' | 'assets.manage'
+  | 'calendar.view' | 'calendar.create' | 'calendar.update' | 'calendar.delete' | 'calendar.manage'
+  | 'media.view' | 'media.create' | 'media.update' | 'media.delete' | 'media.manage';
 
 export type UserRole = 'superadmin' | 'tenant_admin' | 'pastor' | 'editor' | 'media_volunteer';
 
