@@ -28,7 +28,7 @@ import {
 } from 'lucide-react';
 
 export type NavigationKey =
-  | 'dashboard'
+  | 'churchflow'\n  | 'dashboard'
   | 'pages'
   | 'media'
   | 'banners'
@@ -66,7 +66,7 @@ const NAV_GROUPS: NavGroup[] = [
   {
     title: 'PRINCIPAL',
     items: [
-      { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+      { id: 'churchflow', label: 'ChurchFlow', icon: Church },\n      { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     ],
   },
   {
