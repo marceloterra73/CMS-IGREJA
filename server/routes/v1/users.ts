@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import { Router, type Request, type Response, type NextFunction } from 'express';
 import { and, eq } from 'drizzle-orm';
 import { users } from '../../db/schema/users.js';
