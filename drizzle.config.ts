@@ -1,7 +1,8 @@
 import { defineConfig } from 'drizzle-kit';
 
 export default defineConfig({
-  schema: './server/db/schema/index.ts',
+  // Mantém o índice canônico e inclui os módulos incrementais ainda não exportados nele.
+  schema: ['./server/db/schema/index.ts', './server/db/schema/people.ts'],
   out: './server/db/migrations',
   dialect: 'postgresql',
   dbCredentials: {
