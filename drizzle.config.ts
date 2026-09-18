@@ -1,8 +1,12 @@
 import { defineConfig } from 'drizzle-kit';
 
+// Schemas incrementais são listados explicitamente até serem consolidados no índice.
 export default defineConfig({
-  // Mantém o índice canônico e inclui os módulos incrementais ainda não exportados nele.
-  schema: ['./server/db/schema/index.ts', './server/db/schema/people.ts'],
+  schema: [
+    './server/db/schema/index.ts',
+    './server/db/schema/people.ts',
+    './server/db/schema/groups.ts',
+  ],
   out: './server/db/migrations',
   dialect: 'postgresql',
   dbCredentials: {
