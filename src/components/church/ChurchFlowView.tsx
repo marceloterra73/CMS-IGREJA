@@ -36,6 +36,8 @@ export const ChurchFlowView: React.FC = () => {
   const [summary, setSummary] = useState<Summary>({ people: 0, groups: 0, studies: 0, transactions: 0 });
   const [loading, setLoading] = useState(false);
   const [notice, setNotice] = useState('Conectando ao núcleo ChurchFlow…');
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm] = useState<Record<string, string>>({});
 
   const load = async () => {
     setLoading(true);
@@ -59,6 +61,37 @@ export const ChurchFlowView: React.FC = () => {
   const filteredPeople = useMemo(() => people.filter(p =>
     (p.fullName || '').toLowerCase().includes(query.toLowerCase())
   ), [people, query]);
+
+  const openCreate = () => {
+    setForm({});
+    setShowForm(true);
+  };
+
+  const submitCreate = async () => {
+    try {
+      if (active === 'people') {
+        await api('/people', { method: 'POST', body: JSON.stringify({ fullName: form.fullName, preferredName: form.preferredName, phone: form.phone, email: form.email, category: form.category, role: form.role }) });
+      } else if (active === 'groups') {
+        await api('/groups', { method: 'POST', body: JSON.stringify({ name: form.name, category: form.category, meetingDay: form.meetingDay, meetingTime: form.meetingTime, location: form.location }) });
+      } else if (active === 'education') {
+        await api('/education/studies', { method: 'POST', body: JSON.stringify({ title: form.title, description: form.description, category: form.category }) });
+      } else if (active === 'finance') {
+        const accounts = await api<{id: string}[]>('/finance/accounts');
+        const accountId = form.accountId || accounts[0]?.id;
+        if (!accountId) throw new Error('Crie uma conta financeira antes do lançamento.');
+        await api('/finance/transactions', { method: 'POST', body: JSON.stringify({ accountId, description: form.description, kind: form.kind || 'expense', amount: form.amount, status: 'pending' }) });
+      } else {
+        setNotice('Cadastro rápido deste módulo será conectado na próxima camada.');
+        setShowForm(false);
+        return;
+      }
+      setShowForm(false);
+      await load();
+      setNotice('Registro criado com sucesso.');
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : 'Não foi possível salvar.');
+    }
+  };
 
   const cards = [
     { label: 'Pessoas', value: summary.people, icon: Users },
@@ -118,7 +151,7 @@ export const ChurchFlowView: React.FC = () => {
             <div className="relative"><Search className="absolute left-3 top-2.5 w-4 h-4 text-stone-400" />
               <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Buscar…" className="pl-9 pr-3 py-2 rounded-lg border border-stone-200 text-sm outline-none focus:border-amber-500 w-48" />
             </div>
-            <button className="px-3 py-2 rounded-lg bg-amber-500 text-stone-950 text-xs font-bold inline-flex items-center gap-1"><Plus className="w-4 h-4" /> Novo</button>
+            <button onClick={openCreate} className="px-3 py-2 rounded-lg bg-amber-500 text-stone-950 text-xs font-bold inline-flex items-center gap-1"><Plus className="w-4 h-4" /> Novo</button>
           </div>
         </div>
 
@@ -148,3 +181,10 @@ export const ChurchFlowView: React.FC = () => {
 };
 
 const Empty: React.FC<{ notice: string }> = ({ notice }) => <div className="p-8 text-center text-sm text-stone-500">{notice}</div>;
+
+const Field: React.FC<{ label: string; value?: string; onChange: (value: string) => void; required?: boolean }> = ({ label, value = '', onChange, required }) => (
+  <label className="text-xs font-medium text-stone-600">
+    {label}{required ? ' *' : ''}
+    <input value={value} onChange={e => onChange(e.target.value)} className="mt-1 w-full rounded-lg border border-stone-200 px-3 py-2 text-sm outline-none focus:border-amber-500" />
+  </label>
+);
