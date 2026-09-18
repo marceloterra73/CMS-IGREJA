@@ -5,7 +5,7 @@ import { ApiError } from '../../errors/apiError.js';
 import { authenticateMiddleware } from '../../middleware/authenticate.js';
 import { churchPeople } from '../../db/schema/people.js';
 import { churchGroups, churchGroupLeaders, churchGroupMeetings } from '../../db/schema/groups.js';
-import { financeTransactions } from '../../db/schema/finance.js';
+import { financeAccounts, financeCategories, financeCostCenters, financeContacts, financeTransactions } from '../../db/schema/finance.js';
 import { churchAssets } from '../../db/schema/assets.js';
 import { calendarEvents } from '../../db/schema/calendar.js';
 import { churchMedia } from '../../db/schema/churchMedia.js';
@@ -220,6 +220,71 @@ router.post('/groups/:id/meetings', async (req, res, next) => {
     }).returning();
     res.status(201).json({ success: true, data: row });
   } catch (e) { next(e); }
+});
+
+
+router.get('/finance/accounts', async (req, res, next) => {
+  try { const db=requireDb(); const tid=tenantId(req); const rows=await db.select().from(financeAccounts).where(eq(financeAccounts.tenantId,tid)).orderBy(desc(financeAccounts.createdAt)); res.json({success:true,data:rows}); } catch(e){next(e);}
+});
+router.post('/finance/accounts', async (req,res,next)=>{
+  try { const db=requireDb(); const tid=tenantId(req); const input=body(req); if(!input.name) throw ApiError.badRequest('name é obrigatório.');
+    const [row]=await db.insert(financeAccounts).values({id:input.id||crypto.randomUUID(),tenantId:tid,name:String(input.name),accountType:optionalString(input.accountType)||'cash',initialBalance:optionalString(input.initialBalance)||'0',notes:optionalString(input.notes)}).returning();
+    res.status(201).json({success:true,data:row});
+  }catch(e){next(e);}
+});
+router.get('/finance/categories', async (req,res,next)=>{
+  try { const db=requireDb(); const tid=tenantId(req); const rows=await db.select().from(financeCategories).where(eq(financeCategories.tenantId,tid)).orderBy(desc(financeCategories.name)); res.json({success:true,data:rows}); }catch(e){next(e);}
+});
+router.post('/finance/categories', async (req,res,next)=>{
+  try { const db=requireDb(); const tid=tenantId(req); const input=body(req); if(!input.name) throw ApiError.badRequest('name é obrigatório.');
+    const [row]=await db.insert(financeCategories).values({id:input.id||crypto.randomUUID(),tenantId:tid,name:String(input.name),kind:optionalString(input.kind)||'both',parentId:optionalString(input.parentId)}).returning();
+    res.status(201).json({success:true,data:row});
+  }catch(e){next(e);}
+});
+router.get('/finance/cost-centers', async (req,res,next)=>{
+  try { const db=requireDb(); const tid=tenantId(req); const rows=await db.select().from(financeCostCenters).where(eq(financeCostCenters.tenantId,tid)).orderBy(desc(financeCostCenters.name)); res.json({success:true,data:rows}); }catch(e){next(e);}
+});
+router.post('/finance/cost-centers', async (req,res,next)=>{
+  try { const db=requireDb(); const tid=tenantId(req); const input=body(req); if(!input.name) throw ApiError.badRequest('name é obrigatório.');
+    const [row]=await db.insert(financeCostCenters).values({id:input.id||crypto.randomUUID(),tenantId:tid,name:String(input.name),code:optionalString(input.code)}).returning();
+    res.status(201).json({success:true,data:row});
+  }catch(e){next(e);}
+});
+router.get('/finance/contacts', async (req,res,next)=>{
+  try { const db=requireDb(); const tid=tenantId(req); const rows=await db.select().from(financeContacts).where(eq(financeContacts.tenantId,tid)).orderBy(desc(financeContacts.name)); res.json({success:true,data:rows}); }catch(e){next(e);}
+});
+router.post('/finance/contacts', async (req,res,next)=>{
+  try { const db=requireDb(); const tid=tenantId(req); const input=body(req); if(!input.name) throw ApiError.badRequest('name é obrigatório.');
+    const [row]=await db.insert(financeContacts).values({id:input.id||crypto.randomUUID(),tenantId:tid,name:String(input.name),contactType:optionalString(input.contactType)||'supplier',email:optionalString(input.email),phone:optionalString(input.phone),taxId:optionalString(input.taxId),notes:optionalString(input.notes)}).returning();
+    res.status(201).json({success:true,data:row});
+  }catch(e){next(e);}
+});
+router.post('/finance/transactions', async(req,res,next)=>{
+  try {
+    const db=requireDb(); const tid=tenantId(req); const input=body(req);
+    if(!input.accountId || !input.description || !input.kind || input.amount===undefined) throw ApiError.badRequest('accountId, description, kind e amount são obrigatórios.');
+    const [account]=await db.select({id:financeAccounts.id}).from(financeAccounts).where(and(eq(financeAccounts.id,String(input.accountId)),eq(financeAccounts.tenantId,tid))).limit(1);
+    if(!account) throw ApiError.notFound('Conta financeira não encontrada neste tenant.');
+    const [row]=await db.insert(financeTransactions).values({id:input.id||crypto.randomUUID(),tenantId:tid,accountId:String(input.accountId),categoryId:optionalString(input.categoryId),costCenterId:optionalString(input.costCenterId),contactId:optionalString(input.contactId),description:String(input.description),kind:String(input.kind),status:optionalString(input.status)||'pending',amount:String(input.amount),dueDate:optionalString(input.dueDate),paidDate:optionalString(input.paidDate),paymentMethod:optionalString(input.paymentMethod),referenceCode:optionalString(input.referenceCode),notes:optionalString(input.notes)}).returning();
+    res.status(201).json({success:true,data:row});
+  }catch(e){next(e);}
+});
+router.get('/finance/transactions/:id', async(req,res,next)=>{
+  try { const db=requireDb(); const tid=tenantId(req); const [row]=await db.select().from(financeTransactions).where(and(eq(financeTransactions.id,req.params.id),eq(financeTransactions.tenantId,tid))).limit(1); if(!row) throw ApiError.notFound('Lançamento não encontrado.'); res.json({success:true,data:row}); }catch(e){next(e);}
+});
+router.patch('/finance/transactions/:id', async(req,res,next)=>{
+  try {
+    const db=requireDb(); const tid=tenantId(req); const input=body(req); const updates:Record<string,unknown>={};
+    for(const key of ['accountId','categoryId','costCenterId','contactId','description','kind','status','amount','dueDate','paidDate','paymentMethod','referenceCode','notes']) if(input[key]!==undefined) updates[key]=input[key]===null||input[key]===''?null:String(input[key]);
+    if(!Object.keys(updates).length) throw ApiError.badRequest('Nenhum campo para atualizar.');
+    updates.updatedAt=new Date();
+    const [row]=await db.update(financeTransactions).set(updates as any).where(and(eq(financeTransactions.id,req.params.id),eq(financeTransactions.tenantId,tid))).returning();
+    if(!row) throw ApiError.notFound('Lançamento não encontrado.');
+    res.json({success:true,data:row});
+  }catch(e){next(e);}
+});
+router.delete('/finance/transactions/:id', async(req,res,next)=>{
+  try { const db=requireDb(); const tid=tenantId(req); const [row]=await db.delete(financeTransactions).where(and(eq(financeTransactions.id,req.params.id),eq(financeTransactions.tenantId,tid))).returning(); if(!row) throw ApiError.notFound('Lançamento não encontrado.'); res.json({success:true,data:row}); }catch(e){next(e);}
 });
 
 router.get('/finance/transactions', async (req, res, next) => {
