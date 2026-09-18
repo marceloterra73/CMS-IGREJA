@@ -8,6 +8,9 @@ import type { PermissionAction, UserRole } from '../../src/types/index.js';
  */
 
 export const ALL_CANONICAL_PERMISSIONS: PermissionAction[] = [
+  ...(['people','groups','education','finance','assets','calendar','media'].flatMap((module) =>
+    ['view','create','update','delete','manage'].map((action) => `${module}.${action}` as PermissionAction),
+  )),
   'manage:tenant',
   'manage:users',
   'manage:pages',
