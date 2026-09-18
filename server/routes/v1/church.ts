@@ -6,7 +6,7 @@ import { authenticateMiddleware } from '../../middleware/authenticate.js';
 import { churchPeople } from '../../db/schema/people.js';
 import { churchGroups, churchGroupLeaders, churchGroupMeetings } from '../../db/schema/groups.js';
 import { financeAccounts, financeCategories, financeCostCenters, financeContacts, financeTransactions } from '../../db/schema/finance.js';
-import { churchAssets } from '../../db/schema/assets.js';
+import { churchAssets, assetCategories, assetLocations } from '../../db/schema/assets.js';
 import { calendarEvents } from '../../db/schema/calendar.js';
 import { churchMedia } from '../../db/schema/churchMedia.js';
 import {
@@ -295,6 +295,20 @@ router.get('/finance/transactions', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+
+router.get('/assets/categories', async (req,res,next)=>{ try { const db=requireDb(); const tid=tenantId(req); const rows=await db.select().from(assetCategories).where(eq(assetCategories.tenantId,tid)).orderBy(desc(assetCategories.createdAt)); res.json({success:true,data:rows}); } catch(e){next(e);} });
+router.post('/assets/categories', async (req,res,next)=>{ try { const db=requireDb(); const tid=tenantId(req); const input=body(req); if(!input.name) throw ApiError.badRequest('name é obrigatório.'); const [row]=await db.insert(assetCategories).values({id:input.id||crypto.randomUUID(),tenantId:tid,name:String(input.name),description:optionalString(input.description)}).returning(); res.status(201).json({success:true,data:row}); } catch(e){next(e);} });
+router.get('/assets/locations', async (req,res,next)=>{ try { const db=requireDb(); const tid=tenantId(req); const rows=await db.select().from(assetLocations).where(eq(assetLocations.tenantId,tid)).orderBy(desc(assetLocations.createdAt)); res.json({success:true,data:rows}); } catch(e){next(e);} });
+router.post('/assets/locations', async (req,res,next)=>{ try { const db=requireDb(); const tid=tenantId(req); const input=body(req); if(!input.name) throw ApiError.badRequest('name é obrigatório.'); const [row]=await db.insert(assetLocations).values({id:input.id||crypto.randomUUID(),tenantId:tid,name:String(input.name),address:optionalString(input.address),description:optionalString(input.description)}).returning(); res.status(201).json({success:true,data:row}); } catch(e){next(e);} });
+router.post('/assets', async (req,res,next)=>{ try {
+  const db=requireDb(); const tid=tenantId(req); const input=body(req);
+  if(!input.name) throw ApiError.badRequest('name é obrigatório.');
+  if(input.categoryId){ const [x]=await db.select({id:assetCategories.id}).from(assetCategories).where(and(eq(assetCategories.id,String(input.categoryId)),eq(assetCategories.tenantId,tid))).limit(1); if(!x) throw ApiError.notFound('Categoria de patrimônio não encontrada neste tenant.'); }
+  if(input.locationId){ const [x]=await db.select({id:assetLocations.id}).from(assetLocations).where(and(eq(assetLocations.id,String(input.locationId)),eq(assetLocations.tenantId,tid))).limit(1); if(!x) throw ApiError.notFound('Local de patrimônio não encontrado neste tenant.'); }
+  const [row]=await db.insert(churchAssets).values({id:input.id||crypto.randomUUID(),tenantId:tid,name:String(input.name),categoryId:optionalString(input.categoryId),locationId:optionalString(input.locationId),assetTag:optionalString(input.assetTag),serialNumber:optionalString(input.serialNumber),description:optionalString(input.description),condition:optionalString(input.condition)||'good',status:optionalString(input.status)||'active',acquisitionDate:optionalString(input.acquisitionDate),acquisitionValue:optionalString(input.acquisitionValue),usefulLifeMonths:input.usefulLifeMonths===undefined?undefined:Number(input.usefulLifeMonths),currentValue:optionalString(input.currentValue),responsiblePersonId:optionalString(input.responsiblePersonId),responsibleName:optionalString(input.responsibleName),warrantyUntil:optionalString(input.warrantyUntil),photoUrl:optionalString(input.photoUrl),documentUrl:optionalString(input.documentUrl),notes:optionalString(input.notes)}).returning();
+  res.status(201).json({success:true,data:row});
+} catch(e){next(e);} });
+
 router.get('/assets', async (req, res, next) => {
   try {
     const db = requireDb(); const tid = tenantId(req);
@@ -303,6 +317,9 @@ router.get('/assets', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+
+router.post('/calendar/events', async(req,res,next)=>{ try { const db=requireDb(); const tid=tenantId(req); const input=body(req); if(!input.title||!input.eventDate) throw ApiError.badRequest('title e eventDate são obrigatórios.'); const [row]=await db.insert(calendarEvents).values({id:input.id||crypto.randomUUID(),tenantId:tid,title:String(input.title),description:optionalString(input.description),eventDate:String(input.eventDate),startTime:optionalString(input.startTime),endTime:optionalString(input.endTime),location:optionalString(input.location),category:optionalString(input.category),visibility:optionalString(input.visibility)||'church',isAllDay:Boolean(input.isAllDay),isRecurring:Boolean(input.isRecurring),recurrenceRule:optionalString(input.recurrenceRule),color:optionalString(input.color),organizerName:optionalString(input.organizerName)}).returning(); res.status(201).json({success:true,data:row}); } catch(e){next(e);} });
+
 router.get('/calendar/events', async (req, res, next) => {
   try {
     const db = requireDb(); const tid = tenantId(req);
@@ -310,6 +327,9 @@ router.get('/calendar/events', async (req, res, next) => {
     res.json({ success: true, data: rows });
   } catch (e) { next(e); }
 });
+
+
+router.post('/media', async(req,res,next)=>{ try { const db=requireDb(); const tid=tenantId(req); const input=body(req); if(!input.title||!input.storageKey||!input.mediaType) throw ApiError.badRequest('title, mediaType e storageKey são obrigatórios.'); const [row]=await db.insert(churchMedia).values({id:input.id||crypto.randomUUID(),tenantId:tid,folderId:optionalString(input.folderId),title:String(input.title),description:optionalString(input.description),mediaType:String(input.mediaType),mimeType:optionalString(input.mimeType),storageKey:String(input.storageKey),publicUrl:optionalString(input.publicUrl),thumbnailUrl:optionalString(input.thumbnailUrl),fileName:optionalString(input.fileName),fileSizeBytes:input.fileSizeBytes===undefined?undefined:Number(input.fileSizeBytes),durationSeconds:input.durationSeconds===undefined?undefined:Number(input.durationSeconds),width:input.width===undefined?undefined:Number(input.width),height:input.height===undefined?undefined:Number(input.height),isPublic:Boolean(input.isPublic),isDownloadable:input.isDownloadable===undefined?true:Boolean(input.isDownloadable),uploadedByUserId:(req as any).user?.id}); res.status(201).json({success:true,data:row}); } catch(e){next(e);} });
 
 router.get('/media', async (req, res, next) => {
   try {
