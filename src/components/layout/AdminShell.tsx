@@ -23,6 +23,7 @@ import { SchedulesView } from '../schedules/SchedulesView';
 import { DonationsView } from '../donations/DonationsView';
 import { LiveStreamView } from '../live-stream/LiveStreamView';
 import { PlaceholderView } from '../common/PlaceholderView';
+import { ChurchFlowView } from '../church/ChurchFlowView';
 import {
   BookOpen,
   X,
@@ -73,7 +74,7 @@ export const AdminShell: React.FC<AdminShellProps> = ({ onVisitSite }) => {
 
         {/* Área de Conteúdo Principal */}
         <main id="admin-main-content" className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
-          {currentSection === 'dashboard' ? (
+          {currentSection === 'churchflow' ? (\n            <ChurchFlowView />\n          ) : currentSection === 'dashboard' ? (
             <DashboardView onNavigate={(section) => setCurrentSection(section)} />
           ) : currentSection === 'pages' ? (
             <PagesView />
