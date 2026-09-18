@@ -10,6 +10,7 @@ export default defineConfig({
     './server/db/schema/education.ts',
     './server/db/schema/assets.ts',
     './server/db/schema/calendar.ts',
+    './server/db/schema/churchMedia.ts',
   ],
   out: './server/db/migrations',
   dialect: 'postgresql',
