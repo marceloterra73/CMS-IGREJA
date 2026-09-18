@@ -3,6 +3,7 @@ import { and, eq, desc } from 'drizzle-orm';
 import { getDb } from '../../db/index.js';
 import { ApiError } from '../../errors/apiError.js';
 import { authenticateMiddleware } from '../../middleware/authenticate.js';
+import { hasPermission as hasRbacPermission } from '../../auth/rbac.js';
 import { churchPeople } from '../../db/schema/people.js';
 import { churchGroups, churchGroupLeaders, churchGroupMeetings } from '../../db/schema/groups.js';
 import { financeAccounts, financeCategories, financeCostCenters, financeContacts, financeTransactions } from '../../db/schema/finance.js';
@@ -20,6 +21,20 @@ import {
 
 const router = Router();
 router.use(authenticateMiddleware);
+router.use((req, _res, next) => {
+  const module = req.path.split('/').filter(Boolean)[0] as string | undefined;
+  const allowedModules = new Set(['people','groups','education','finance','assets','calendar','media']);
+  if (!module || !allowedModules.has(module)) return next();
+
+  const action = req.method === 'GET' ? 'view' : req.method === 'POST' ? 'create' : req.method === 'PATCH' ? 'update' : req.method === 'DELETE' ? 'delete' : null;
+  if (!action) return next();
+
+  const user = (req as any).user;
+  const required = `${module}.${action}` as any;
+  if (user && (hasRbacPermission(user.role, user.permissions, required) || hasRbacPermission(user.role, user.permissions, `${module}.manage` as any))) return next();
+  return next(ApiError.forbidden('Você não possui permissão para esta operação do ChurchFlow.'));
+});
+
 
 function tenantId(req: Request): string {
   const id = (req as any).user?.tenantId;
