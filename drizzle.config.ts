@@ -8,6 +8,7 @@ export default defineConfig({
     './server/db/schema/groups.ts',
     './server/db/schema/finance.ts',
     './server/db/schema/education.ts',
+    './server/db/schema/assets.ts',
   ],
   out: './server/db/migrations',
   dialect: 'postgresql',
