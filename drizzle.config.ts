@@ -6,6 +6,7 @@ export default defineConfig({
     './server/db/schema/index.ts',
     './server/db/schema/people.ts',
     './server/db/schema/groups.ts',
+    './server/db/schema/finance.ts',
   ],
   out: './server/db/migrations',
   dialect: 'postgresql',
