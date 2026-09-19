@@ -1,7 +1,13 @@
 import React from 'react';
 import { Church, LayoutDashboard, FileText, Image as ImageIcon, Calendar, Settings, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-export type NavigationKey = 'churchflow' | 'dashboard' | 'pages' | 'media' | 'events' | 'settings';
+export type NavigationKey =
+  | 'churchflow'
+  | 'dashboard'
+  | 'pages'
+  | 'media'
+  | 'events'
+  | 'settings';
 
 interface SidebarProps {
   currentSection: NavigationKey;
