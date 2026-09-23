@@ -32,36 +32,12 @@ const items: Array<{
   label: string;
   icon: React.ElementType;
 }> = [
-  {
-    key: 'churchflow',
-    label: 'ChurchFlow',
-    icon: Church,
-  },
-  {
-    key: 'dashboard',
-    label: 'Dashboard',
-    icon: LayoutDashboard,
-  },
-  {
-    key: 'pages',
-    label: 'Páginas',
-    icon: FileText,
-  },
-  {
-    key: 'media',
-    label: 'Mídia',
-    icon: ImageIcon,
-  },
-  {
-    key: 'events',
-    label: 'Eventos',
-    icon: Calendar,
-  },
-  {
-    key: 'settings',
-    label: 'Configurações',
-    icon: Settings,
-  },
+  { key: 'churchflow', label: 'ChurchFlow', icon: Church },
+  { key: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { key: 'pages', label: 'Páginas', icon: FileText },
+  { key: 'media', label: 'Mídia', icon: ImageIcon },
+  { key: 'events', label: 'Eventos', icon: Calendar },
+  { key: 'settings', label: 'Configurações', icon: Settings },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -75,9 +51,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <aside
       className={`
-        ${
-          isMobileOpen ? 'translate-x-0' : '-translate-x-full'
-        }
+        ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}
         lg:translate-x-0
         fixed inset-y-0 left-0 z-40
         flex w-64 flex-col
@@ -87,54 +61,44 @@ export const Sidebar: React.FC<SidebarProps> = ({
       `}
     >
       <div className="flex h-16 items-center justify-between border-b px-4">
-        {!isCollapsed && (
-          <div className="font-bold">ChurchFlow</div>
-        )}
-
+        {!isCollapsed && <div className="font-bold">ChurchFlow</div>}
         <button
-          tipo="botão"
-          ao clicar={emFecharMóvel}
-          rótulo de ária="Menu Fechar"
+          type="button"
+          onClick={onCloseMobile}
+          aria-label="Fechar menu"
         >
-          <X tamanho={20} />
-        </botão>
-      </dividir>
+          <X size={20} />
+        </button>
+      </div>
 
-      <navegação nome sim classe="flex-1 espaço-y-1 p-3">
-        {itens.mapa(({ chave, rótulo, ícone: Ícone }) => (
-          <botão
-            chave={chave}
-            tipo="botão"
-            ao clicar={() => onSelectSeção(chave)}
-            nome sim classe={`
-              flex w-itens completos-lacuna central-3
-              arredondado-lg px-3 py-2 texto à escala
-              ${
-                sessão atual === chave
-                  ? 'fonte bg-slate-100-semibold'
-                  : ''
-              }
-            `}
+      <nav className="flex-1 space-y-1 p-3">
+        {items.map(({ key, label, icon: Icon }) => (
+          <button
+            key={key}
+            type="button"
+            onClick={() => onSelectSection(key)}
+            className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left ${
+              currentSection === key ? 'bg-slate-100 font-semibold' : ''
+            }`}
           >
-            <Ícone tamanho={20} />
-
-            {!está colapsado && <extensão>{rótulo}</extensão>}
-          </botão>
+            <Icon size={20} />
+            {!isCollapsed && <span>{label}</span>}
+          </button>
         ))}
-      </navegação>
+      </nav>
 
       {onToggleCollapse && (
-        <botão
-          tipo="botão"
-          ao clicar={onToggleColapse}
-          rótulo de ária="Menu alternativo"
-          nome sim classe="m-3 oculto lg:flex"
+        <button
+          type="button"
+          onClick={onToggleCollapse}
+          aria-label="Alternar menu"
+          className="m-3 hidden lg:flex"
         >
-          <ChevronEsquerda tamanho={20} />
-        </botão>
+          <ChevronLeft size={20} />
+        </button>
       )}
-    </separado>
+    </aside>
   );
 };
 
-exportar padrão Barra lateral;
+export default Sidebar;
